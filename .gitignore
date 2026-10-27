@@ -124,3 +124,11 @@ desktop.ini
 temp/
 tmp/
 
+# Local test & scratch scripts
+test_*.py
+scratch_*.py
+scratch_test.py
+create_dummy.py
+patch_features.py
+
+
