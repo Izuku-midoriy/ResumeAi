@@ -1,0 +1,17 @@
+{
+    "best_model_name": "Logistic Regression",
+    "best_feature_set_name": "Text + Skills",
+    "features": [
+        "tfidf_similarity",
+        "semantic_similarity",
+        "skill_match_ratio",
+        "missing_skill_ratio",
+        "matched_skill_count",
+        "missing_skill_count"
+    ],
+    "classes": [
+        "Good Fit",
+        "No Fit",
+        "Potential Fit"
+    ]
+}

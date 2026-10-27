@@ -1,0 +1,17 @@
+streamlit
+pypdf
+python-docx
+pandas
+numpy
+scikit-learn
+spacy
+sentence-transformers
+fastapi
+uvicorn
+torchvision
+shap
+reportlab
+requests
+datasets
+google-genai
+xgboost

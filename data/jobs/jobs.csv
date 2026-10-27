@@ -1,0 +1,7 @@
+job_id,job_title,company,location,description,required_skills,experience_required,education_required,job_url
+1,Machine Learning Engineer,ABC Technologies,Mumbai,Develop and deploy machine learning models for predictive analytics. Work closely with data engineers to build robust data pipelines. Strong Python and SQL skills required.,Python; Machine Learning; SQL; TensorFlow,2,B.Tech,http://example.com/job/1
+2,Data Scientist,XYZ Analytics,Bangalore,Analyze complex datasets to derive actionable insights. Build statistical models and communicate findings to stakeholders.,Python; SQL; Machine Learning; Pandas,3,Master's Degree,http://example.com/job/2
+3,Frontend Developer,WebTech Solutions,Pune,Build responsive web applications using modern JavaScript frameworks like React. Collaborate with designers to ensure high-quality UI/UX.,JavaScript; React; HTML; CSS; Node.js,1,B.Sc Computer Science,http://example.com/job/3
+4,Backend Engineer,CloudSystems Inc.,Hyderabad,Design and implement scalable backend APIs. Manage databases and ensure high availability of services.,Python; Django; FastAPI; PostgreSQL; AWS,3,B.Tech,http://example.com/job/4
+5,Data Analyst,Data Insights Co.,Delhi,Process and clean data. Create dashboards and reports to help management make data-driven decisions.,SQL; Python; Data Analysis; Pandas,1,B.Sc,http://example.com/job/5
+

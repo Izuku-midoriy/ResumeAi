@@ -1,0 +1,79 @@
+{
+    "ablation_results": [
+        {
+            "Feature Set": "Text Only",
+            "Model": "Logistic Regression",
+            "Validation Accuracy": 0.48509174311926606,
+            "Validation Macro F1": 0.4362676334635407,
+            "Validation Weighted F1": 0.48316679787166605
+        },
+        {
+            "Feature Set": "Text Only",
+            "Model": "Random Forest",
+            "Validation Accuracy": 0.4461009174311927,
+            "Validation Macro F1": 0.40212586185729154,
+            "Validation Weighted F1": 0.44834716006736414
+        },
+        {
+            "Feature Set": "Text Only",
+            "Model": "XGBoost",
+            "Validation Accuracy": 0.5206422018348624,
+            "Validation Macro F1": 0.3694319491512739,
+            "Validation Weighted F1": 0.4494441075110219
+        },
+        {
+            "Feature Set": "Text + Skills",
+            "Model": "Logistic Regression",
+            "Validation Accuracy": 0.4908256880733945,
+            "Validation Macro F1": 0.45782473519740763,
+            "Validation Weighted F1": 0.49440543518656904
+        },
+        {
+            "Feature Set": "Text + Skills",
+            "Model": "Random Forest",
+            "Validation Accuracy": 0.4736238532110092,
+            "Validation Macro F1": 0.42569764260444104,
+            "Validation Weighted F1": 0.4739512544417801
+        },
+        {
+            "Feature Set": "Text + Skills",
+            "Model": "XGBoost",
+            "Validation Accuracy": 0.5527522935779816,
+            "Validation Macro F1": 0.43393328375970763,
+            "Validation Weighted F1": 0.4999678844996083
+        },
+        {
+            "Feature Set": "Full Features",
+            "Model": "Logistic Regression",
+            "Validation Accuracy": 0.48623853211009177,
+            "Validation Macro F1": 0.4553122014298321,
+            "Validation Weighted F1": 0.4907703162308458
+        },
+        {
+            "Feature Set": "Full Features",
+            "Model": "Random Forest",
+            "Validation Accuracy": 0.5045871559633027,
+            "Validation Macro F1": 0.4444488651565468,
+            "Validation Weighted F1": 0.494329882347358
+        },
+        {
+            "Feature Set": "Full Features",
+            "Model": "XGBoost",
+            "Validation Accuracy": 0.5252293577981652,
+            "Validation Macro F1": 0.40728241121683745,
+            "Validation Weighted F1": 0.4751771509171118
+        }
+    ],
+    "best_model_selection": {
+        "Feature Set": "Text + Skills",
+        "Model": "Logistic Regression",
+        "Validation Accuracy": 0.4908256880733945,
+        "Validation Macro F1": 0.45782473519740763,
+        "Validation Weighted F1": 0.49440543518656904
+    },
+    "test_metrics": {
+        "accuracy": 0.4603321033210332,
+        "macro_f1": 0.43188265920757,
+        "weighted_f1": 0.45669667566602895
+    }
+}

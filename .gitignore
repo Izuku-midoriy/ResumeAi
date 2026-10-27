@@ -1,0 +1,126 @@
+# ==========================================
+# Python & Virtual Environments
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ==========================================
+# Environment Variables & Secrets
+# ==========================================
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+*.pem
+*.key
+
+# ==========================================
+# Large Datasets & Processed Data
+# ==========================================
+# Prevent committing large datasets (>100MB exceeds GitHub limits)
+data/training/train.csv
+data/training/train_features.csv
+data/training/test_features.csv
+data/training/val_features.csv
+
+# Uploaded / generated test files
+dummy_resume.pdf
+data/resumes/*.pdf
+!data/resumes/sample_ml_resume.pdf
+
+# Preserve directory structures
+!**/data/**/.gitkeep
+!**/models/**/.gitkeep
+
+# ==========================================
+# Machine Learning Models & Checkpoints
+# ==========================================
+# Model binary weights and pickle files
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.bin
+*.onnx
+*.h5
+
+# Keep metadata & evaluation metrics
+!models/evaluation_results.json
+!models/model_meta.json
+
+# Caches & Downloaded Models
+.cache/
+transformers_cache/
+hf_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ==========================================
+# Frontend (Next.js / Node)
+# ==========================================
+node_modules/
+.next/
+out/
+.vercel/
+*.tsbuildinfo
+
+# Debug & npm logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ==========================================
+# Operating System & IDE
+# ==========================================
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs & Temporary files
+*.log
+temp/
+tmp/
+
