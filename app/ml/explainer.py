@@ -1,6 +1,7 @@
 import joblib
 import shap
 import numpy as np
+import pandas as pd
 from pathlib import Path
 
 class ModelExplainer:
@@ -41,7 +42,11 @@ class ModelExplainer:
             
         # The explainer expects a 2D array, properly scaled
         X = np.array(feature_vector).reshape(1, -1)
-        X_scaled = self.scaler.transform(X)
+        if hasattr(self.scaler, "feature_names_in_"):
+            X_df = pd.DataFrame(X, columns=self.scaler.feature_names_in_)
+            X_scaled = self.scaler.transform(X_df)
+        else:
+            X_scaled = self.scaler.transform(X)
         
         try:
             # Calculate SHAP values

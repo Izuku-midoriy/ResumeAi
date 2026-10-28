@@ -29,12 +29,14 @@ class ModelExplainer:
         """
         Takes a single feature vector and returns a human-readable explanation of feature contributions.
         """
-        # Convert to 2D numpy array
-        X = np.array([feature_vector])
+        # Convert to DataFrame with feature names to match StandardScaler / model training
+        X_df = pd.DataFrame([feature_vector], columns=self.feature_names)
         
         # Scale if scaler is provided (e.g., for Logistic Regression)
         if self.scaler:
-            X = self.scaler.transform(X)
+            X = self.scaler.transform(X_df)
+        else:
+            X = X_df.values
             
         # Get SHAP values
         shap_values = self.explainer.shap_values(X)

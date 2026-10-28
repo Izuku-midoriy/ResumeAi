@@ -1,5 +1,6 @@
 import joblib
 import numpy as np
+import pandas as pd
 import json
 from pathlib import Path
 
@@ -64,11 +65,12 @@ class SuitabilityPredictor:
         feature_dict = dict(zip(feature_names, feature_vector))
         best_features = self.meta.get("features", feature_names)
         
-        X_selected = [[feature_dict[f] for f in best_features]]
-        X = np.array(X_selected)
+        X_df = pd.DataFrame([{f: feature_dict[f] for f in best_features}])
         
         if self.meta.get("best_model_name") == "Logistic Regression":
-            X = self.scaler.transform(X)
+            X = self.scaler.transform(X_df)
+        else:
+            X = X_df
             
         probs = self.model.predict_proba(X)[0]
         pred_idx = self.model.predict(X)[0]
