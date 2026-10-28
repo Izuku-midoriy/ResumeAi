@@ -4,6 +4,9 @@ import uvicorn
 import io
 import os
 import tempfile
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from app.nlp.parser import extract_pdf_text, extract_docx_text
 from app.nlp.extractor import extract_resume_information
@@ -148,6 +151,28 @@ async def match_resume(file: UploadFile = File(...), top_n: int = 3):
         # Standard Pipeline
         resume_info = extract_resume_information(resume_text)
         ats_score, missing = calculate_resume_score(resume_info, resume_text)
+        
+        # LLM Skill Inference: deduce implicit skills from resume context
+        try:
+            from app.llm.skill_inference import SkillInferencer
+            inferencer = SkillInferencer()
+            inferred_skills = inferencer.infer_skills(
+                resume_text=resume_text,
+                explicit_skills=resume_info.get("skills", [])
+            )
+            resume_info["inferred_skills"] = inferred_skills
+
+            # Expand the candidate's skills list with high-confidence inferred skills
+            existing_skills_lower = set(s.lower() for s in resume_info.get("skills", []))
+            for item in inferred_skills:
+                skill_name = item.get("name") if isinstance(item, dict) else str(item)
+                confidence = item.get("confidence", 1.0) if isinstance(item, dict) else 1.0
+                if skill_name and confidence >= 0.5 and skill_name.lower() not in existing_skills_lower:
+                    resume_info["skills"].append(skill_name)
+                    existing_skills_lower.add(skill_name.lower())
+        except Exception as e:
+            print(f"⚠️ Skill inference skipped or failed: {e}")
+            resume_info["inferred_skills"] = []
         
         # Rank Jobs
         matcher = JobMatcher()

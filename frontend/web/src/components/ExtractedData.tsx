@@ -9,11 +9,16 @@ interface ExtractedDataProps {
     experience?: string;
     projects?: string;
     certifications?: string;
+    inferred_skills?: Array<{ name: string; confidence?: number; evidence?: string } | string>;
   };
 }
 
 export default function ExtractedData({ data }: ExtractedDataProps) {
   if (!data) return null;
+
+  const inferredSkillsText = data.inferred_skills && data.inferred_skills.length > 0
+    ? data.inferred_skills.map(s => typeof s === 'string' ? s : s.name).join(', ')
+    : undefined;
 
   const entries = [
     { label: 'Email', value: data.email },
@@ -22,6 +27,7 @@ export default function ExtractedData({ data }: ExtractedDataProps) {
     { label: 'Experience', value: data.experience },
     { label: 'Projects', value: data.projects },
     { label: 'Certifications', value: data.certifications },
+    { label: 'AI Inferred Skills (Gemini)', value: inferredSkillsText },
   ].filter(e => e.value);
 
   if (entries.length === 0) return null;

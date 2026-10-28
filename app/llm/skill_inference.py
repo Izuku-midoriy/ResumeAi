@@ -37,10 +37,25 @@ class SkillInferencer:
         
         # Validate structure
         inferred_skills = []
+        if isinstance(response_json, dict):
+            for key in ["inferred_skills", "skills", "results", "data"]:
+                if key in response_json and isinstance(response_json[key], list):
+                    response_json = response_json[key]
+                    break
+
         if isinstance(response_json, list):
             for item in response_json:
-                if isinstance(item, dict) and "name" in item and "evidence" in item:
-                    item["source"] = "inferred" # Ensure source is correct
+                if isinstance(item, dict) and "name" in item:
+                    item["source"] = "inferred"  # Ensure source is correct
+                    item.setdefault("confidence", 0.8)
+                    item.setdefault("evidence", "")
                     inferred_skills.append(item)
+                elif isinstance(item, str) and item.strip():
+                    inferred_skills.append({
+                        "name": item.strip(),
+                        "source": "inferred",
+                        "confidence": 0.8,
+                        "evidence": "Inferred from resume context"
+                    })
                     
         return inferred_skills

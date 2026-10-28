@@ -1,6 +1,9 @@
 import os
 import json
 from abc import ABC, abstractmethod
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class LLMClient(ABC):
     """Abstract base class for LLM providers."""
@@ -16,8 +19,8 @@ class LLMClient(ABC):
 class GeminiClient(LLMClient):
     """Gemini API client using google.genai (if installed) or fallback mock."""
     
-    def __init__(self, model_name="gemini-2.5-pro", api_key=None):
-        self.model_name = model_name
+    def __init__(self, model_name=None, api_key=None):
+        self.model_name = model_name or os.environ.get("GEMINI_MODEL", "gemini-3.5-flash-lite")
         self.api_key = api_key or os.environ.get("GEMINI_API_KEY")
         
         try:
@@ -26,7 +29,7 @@ class GeminiClient(LLMClient):
                 self.client = genai.Client(api_key=self.api_key)
             else:
                 self.client = None
-                print("Warning: GEMINI_API_KEY not set. GeminiClient will run in mock mode.")
+                print("Info: GEMINI_API_KEY not set. GeminiClient will run in mock mode.")
         except ImportError:
             self.client = None
             print("Warning: google-genai package not found. GeminiClient will run in mock mode.")
@@ -67,7 +70,14 @@ class GeminiClient(LLMClient):
             config=config,
         )
         try:
-            return json.loads(response.text)
+            raw_text = (response.text or "").strip()
+            if raw_text.startswith("```json"):
+                raw_text = raw_text[7:]
+            elif raw_text.startswith("```"):
+                raw_text = raw_text[3:]
+            if raw_text.endswith("```"):
+                raw_text = raw_text[:-3]
+            return json.loads(raw_text.strip())
         except Exception as e:
             print(f"Failed to parse JSON response: {e}")
             return {}
